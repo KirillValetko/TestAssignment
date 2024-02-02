@@ -1,0 +1,18 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:viewModel="clr-namespace:TestAssignment.WPF.ViewModels"
+                    xmlns:view="clr-namespace:TestAssignment.WPF.Views">
+
+    <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+        <view:Home/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewModel:FirstTaskViewModel}">
+        <view:FirstTask/>
+    </DataTemplate>
+
+    <DataTemplate DataType="{x:Type viewModel:SecondTaskViewModel}">
+        <view:SecondTask/>
+    </DataTemplate>
+    
+</ResourceDictionary>

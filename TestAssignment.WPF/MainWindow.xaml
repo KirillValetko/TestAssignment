@@ -3,10 +3,82 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:TestAssignment.WPF"
+        xmlns:viewModel="clr-namespace:TestAssignment.WPF.ViewModels"
+        xmlns:menu="clr-namespace:TestAssignment.WPF.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow"
+        Height="600"
+        Width="850"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        Background="Transparent">
+
+    <Window.DataContext>
+        <viewModel:NavigationViewModel/>
+    </Window.DataContext>
+
     <Grid>
+
+        <Border Background="#212529"
+                CornerRadius="20" />
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="228" />
+                <ColumnDefinition Width="622" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0" HorizontalAlignment="Left"
+                  Width="228">
+
+                <Border Background="#272B2F"
+                CornerRadius="20,0,0,20" />
+
+                <StackPanel Height="150"
+                    Width="228">
+
+                    <menu:CustomBtn Style="{StaticResource BtnStyle}"
+                      Command="{Binding HomeCommand}"
+                      IsChecked="True">
+                        <Grid>
+                            <TextBlock Text="Home"
+                                       Style="{StaticResource Text_Style}" />
+                        </Grid>
+                    </menu:CustomBtn>
+
+                    <menu:CustomBtn Style="{StaticResource BtnStyle}"
+                                    Command="{Binding FirstTaskCommand}">
+                        <Grid>
+                            <TextBlock Text="First Task"
+                                       Style="{StaticResource Text_Style}"/>
+                        </Grid>
+                    </menu:CustomBtn>
+
+                    <menu:CustomBtn Style="{StaticResource BtnStyle}"
+                                    Command="{Binding SecondTaskCommand}">
+                        <Grid>
+                            <TextBlock Text="Second Task"
+                                       Style="{StaticResource Text_Style}"/>
+                        </Grid>
+                    </menu:CustomBtn>
+
+                </StackPanel>
+
+            </Grid>
+
+            <Grid Grid.Column="1">
+
+                <ContentControl x:Name="Pages"
+                        Content="{Binding CurrentView}" />
+
+            </Grid>
+
+        </Grid>
+
+        <Button x:Name="CloseApp"
+        Style="{StaticResource ExitApp}"
+        Click="CloseApp_Click" />
 
     </Grid>
 </Window>
