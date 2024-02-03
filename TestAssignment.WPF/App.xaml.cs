@@ -1,6 +1,8 @@
 ﻿using Microsoft.Extensions.Hosting;
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
+using TestAssignment.WPF.Infrastructure.Configuration;
+using TestAssignment.WPF.ViewModels;
 
 namespace TestAssignment.WPF
 {
@@ -11,9 +13,12 @@ namespace TestAssignment.WPF
         public App()
         {
             AppHost = Host.CreateDefaultBuilder()
-                .ConfigureServices((hostContext, services) =>
+                .ConfigureServices((_, services) =>
                 {
-                    services.AddSingleton<MainWindow>();
+                    services.InitMainWindow();
+                    services.InitViewModels();
+                    services.InitServices();
+                    services.InitNavigation();
                 })
                 .Build();
         }

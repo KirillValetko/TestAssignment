@@ -14,10 +14,6 @@
         WindowStyle="None"
         Background="Transparent">
 
-    <Window.DataContext>
-        <viewModel:NavigationViewModel/>
-    </Window.DataContext>
-
     <Grid>
 
         <Border Background="#212529"
@@ -39,7 +35,7 @@
                     Width="228">
 
                     <menu:CustomBtn Style="{StaticResource BtnStyle}"
-                      Command="{Binding HomeCommand}"
+                      Command="{Binding NavigateToHome}"
                       IsChecked="True">
                         <Grid>
                             <TextBlock Text="Home"
@@ -48,7 +44,7 @@
                     </menu:CustomBtn>
 
                     <menu:CustomBtn Style="{StaticResource BtnStyle}"
-                                    Command="{Binding FirstTaskCommand}">
+                                    Command="{Binding NavigateToFirstTask}">
                         <Grid>
                             <TextBlock Text="First Task"
                                        Style="{StaticResource Text_Style}"/>
@@ -56,7 +52,7 @@
                     </menu:CustomBtn>
 
                     <menu:CustomBtn Style="{StaticResource BtnStyle}"
-                                    Command="{Binding SecondTaskCommand}">
+                                    Command="{Binding NavigateToSecondTask}">
                         <Grid>
                             <TextBlock Text="Second Task"
                                        Style="{StaticResource Text_Style}"/>
@@ -70,7 +66,7 @@
             <Grid Grid.Column="1">
 
                 <ContentControl x:Name="Pages"
-                        Content="{Binding CurrentView}" />
+                        Content="{Binding NavigationService.CurrentView}" />
 
             </Grid>
 
