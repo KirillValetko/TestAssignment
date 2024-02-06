@@ -15,7 +15,6 @@
         Background="Transparent">
 
     <Grid>
-
         <Border Background="#212529"
                 CornerRadius="20" />
 
@@ -27,22 +26,18 @@
 
             <Grid Grid.Column="0" HorizontalAlignment="Left"
                   Width="228">
-
                 <Border Background="#272B2F"
-                CornerRadius="20,0,0,20" />
-
+                        CornerRadius="20,0,0,20" />
                 <StackPanel Height="150"
-                    Width="228">
-
+                            Width="228">
                     <menu:CustomBtn Style="{StaticResource BtnStyle}"
-                      Command="{Binding NavigateToHome}"
-                      IsChecked="True">
+                                    Command="{Binding NavigateToHome}"
+                                    IsChecked="True">
                         <Grid>
                             <TextBlock Text="Home"
                                        Style="{StaticResource Text_Style}" />
                         </Grid>
                     </menu:CustomBtn>
-
                     <menu:CustomBtn Style="{StaticResource BtnStyle}"
                                     Command="{Binding NavigateToFirstTask}">
                         <Grid>
@@ -50,7 +45,6 @@
                                        Style="{StaticResource Text_Style}"/>
                         </Grid>
                     </menu:CustomBtn>
-
                     <menu:CustomBtn Style="{StaticResource BtnStyle}"
                                     Command="{Binding NavigateToSecondTask}">
                         <Grid>
@@ -58,23 +52,17 @@
                                        Style="{StaticResource Text_Style}"/>
                         </Grid>
                     </menu:CustomBtn>
-
                 </StackPanel>
-
             </Grid>
 
             <Grid Grid.Column="1">
-
                 <ContentControl x:Name="Pages"
-                        Content="{Binding NavigationService.CurrentView}" />
-
+                                Content="{Binding NavigationService.CurrentView}" />
             </Grid>
-
         </Grid>
 
         <Button x:Name="CloseApp"
         Style="{StaticResource ExitApp}"
         Click="CloseApp_Click" />
-
     </Grid>
 </Window>

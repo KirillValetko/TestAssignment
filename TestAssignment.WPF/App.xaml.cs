@@ -2,7 +2,6 @@
 using System.Windows;
 using Microsoft.Extensions.DependencyInjection;
 using TestAssignment.WPF.Infrastructure.Configuration;
-using TestAssignment.WPF.ViewModels;
 
 namespace TestAssignment.WPF
 {
@@ -17,6 +16,7 @@ namespace TestAssignment.WPF
                 {
                     services.InitMainWindow();
                     services.InitViewModels();
+                    services.InitGenerators();
                     services.InitServices();
                     services.InitNavigation();
                 })

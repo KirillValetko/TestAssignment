@@ -8,6 +8,92 @@
              d:DesignHeight="600"
              d:DesignWidth="622">
     <Grid>
-            
+        <Border CornerRadius="0,20,20,0" Margin="0,5,5,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="First Task" 
+                           Style="{StaticResource Text_Style}"
+                           Margin="0 40 0 0" />
+
+                <Grid Grid.Row="1" Margin="0 0 0 60">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <StackPanel VerticalAlignment="Center">
+                            <Button Style="{StaticResource Btn}"
+                                    Command="{Binding GenerateFilesCommand}">
+                                <Grid>
+                                    <TextBlock Text="Generate Files"
+                                        Style="{StaticResource Text_Style}"/>
+                                </Grid>
+                            </Button>
+                            <Button Style="{StaticResource Btn}"
+                                    Command="{Binding MergeFilesCommand}">
+                                <Grid>
+                                    <TextBlock Text="Merge Files"
+                                               Style="{StaticResource Text_Style}"/>
+                                </Grid>
+                            </Button>
+                            <Button Style="{StaticResource Btn}">
+                                <Grid>
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="Export File"
+                                                   Style="{StaticResource Text_Style}"/>
+                                        <TextBlock Text="To Database"
+                                                   Style="{StaticResource Text_Style}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Button>
+                            <Button Style="{StaticResource Btn}">
+                                <Grid>
+                                    <StackPanel VerticalAlignment="Center">
+                                        <TextBlock Text="Execute Stored"
+                                                   Style="{StaticResource Text_Style}"/>
+                                        <TextBlock Text="Procedure"
+                                                   Style="{StaticResource Text_Style}"/>
+                                    </StackPanel>
+                                </Grid>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Grid.Column="1">
+                        <StackPanel VerticalAlignment="Center">
+                            <Grid Height="60">
+                                <TextBlock Style="{StaticResource Text_Style}"
+                                           Text="{Binding FilesGenerationStatus}"/>
+                            </Grid>
+                            <Grid Height="60">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+
+                                <TextBox Grid.Column="0" 
+                                         Style="{StaticResource TextBox}"
+                                         Text="{Binding Sequence}"/>
+
+                                <TextBlock Grid.Column="1"
+                                           Style="{StaticResource Text_Style}"
+                                           Text="{Binding FilesMergeStatus}"/>
+                            </Grid>
+                            <Grid Height="60">
+                                <TextBlock Style="{StaticResource Text_Style}"/>
+                            </Grid>
+                            <Grid Height="60">
+                                <TextBlock Style="{StaticResource Text_Style}"/>
+                            </Grid>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>
