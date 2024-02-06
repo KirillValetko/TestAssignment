@@ -1,4 +1,4 @@
-﻿using TestAssignment.WPF.Infrastructure.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 using TestAssignment.WPF.Infrastructure.Services.Interfaces;
 using TestAssignment.WPF.ViewModels;
 

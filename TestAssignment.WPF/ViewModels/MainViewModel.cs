@@ -1,4 +1,4 @@
-﻿using TestAssignment.WPF.Commands;
+﻿using CommunityToolkit.Mvvm.Input;
 using TestAssignment.WPF.Infrastructure.Services.Interfaces;
 
 namespace TestAssignment.WPF.ViewModels
@@ -24,12 +24,9 @@ namespace TestAssignment.WPF.ViewModels
         public MainViewModel(INavigationService navigationService)
         {
             NavigationService = navigationService;
-            NavigateToHome = new RelayCommand(o => { NavigationService.NavigateTo<HomeViewModel>(); }, 
-                o => true);
-            NavigateToFirstTask = new RelayCommand(o => { NavigationService.NavigateTo<FirstTaskViewModel>(); },
-                o => true);
-            NavigateToSecondTask = new RelayCommand(o => { NavigationService.NavigateTo<SecondTaskViewModel>(); },
-                o => true);
+            NavigateToHome = new RelayCommand(NavigationService.NavigateTo<HomeViewModel>);
+            NavigateToFirstTask = new RelayCommand(NavigationService.NavigateTo<FirstTaskViewModel>);
+            NavigateToSecondTask = new RelayCommand(NavigationService.NavigateTo<SecondTaskViewModel>);
             NavigationService.NavigateTo<HomeViewModel>();
         }
     }

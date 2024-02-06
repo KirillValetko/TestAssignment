@@ -1,4 +1,4 @@
-﻿using TestAssignment.WPF.Infrastructure.Models;
+﻿using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace TestAssignment.WPF.ViewModels
 {
