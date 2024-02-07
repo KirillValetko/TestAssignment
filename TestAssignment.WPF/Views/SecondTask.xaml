@@ -8,6 +8,48 @@
              d:DesignHeight="600"
              d:DesignWidth="622">
     <Grid>
-            
+        <Border CornerRadius="0,20,20,0" Margin="0,5,5,0">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock Grid.Row="0" Text="Second Task" 
+                           Style="{StaticResource Text_Style}"
+                           Margin="0 40 0 0" />
+
+                <Grid Grid.Row="1" Margin="0 0 0 60">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="220"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid Grid.Column="0">
+                        <StackPanel VerticalAlignment="Center">
+                            <Button x:Name="OpenDialogBtn"
+                                    Style="{StaticResource Btn}" Click="OpenDialogBtn_Click">
+                                <Grid>
+                                    <TextBlock Text="Download File"
+                                               Style="{StaticResource Text_Style}"/>
+                                </Grid>
+                            </Button>
+                            <Button Style="{StaticResource Btn}">
+                                <Grid>
+                                    <TextBlock Text="Get Data"
+                                               Style="{StaticResource Text_Style}"/>
+                                </Grid>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+
+                    <Grid Grid.Column="1">
+                        <TextBlock x:Name="DownloadedFiles"
+                                   Style="{StaticResource Text_Style}"/>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>
