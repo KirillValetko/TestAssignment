@@ -13,6 +13,10 @@ namespace TestAssignment.WPF.Infrastructure.Configuration
             {
                 opt.ConnectionString = configuration.GetConnectionString(DbSettingConstants.FileDb);
             });
+            services.Configure<BalanceDbSettings>(opt =>
+            {
+                opt.ConnectionString = configuration.GetConnectionString(DbSettingConstants.BalanceDb);
+            });
         }
     }
 }
