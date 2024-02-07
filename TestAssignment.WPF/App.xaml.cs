@@ -1,19 +1,37 @@
-﻿using Microsoft.Extensions.Hosting;
+﻿using System.IO;
+using Microsoft.Extensions.Hosting;
 using System.Windows;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using TestAssignment.WPF.Infrastructure.Configuration;
 
 namespace TestAssignment.WPF
 {
     public partial class App : Application
     {
         public static IHost AppHost { get; private set; }
+        public static IConfiguration Configuration { get; private set; }
 
         public App()
         {
             AppHost = Host.CreateDefaultBuilder()
-                .ConfigureServices((hostContext, services) =>
+                .ConfigureAppConfiguration((_, configuration) =>
                 {
-                    services.AddSingleton<MainWindow>();
+                    configuration
+                        .SetBasePath(Directory.GetCurrentDirectory())
+                        .AddUserSecrets(GetType().Assembly, optional: false, reloadOnChange: true);
+                    Configuration = configuration.Build();
+                })
+                .ConfigureServices((_, services) =>
+                {
+                    services.InitMainWindow();
+                    services.InitViewModels();
+                    services.InitGenerators();
+                    services.InitSettings(Configuration);
+                    services.InitDbContext();
+                    services.InitRepositories();
+                    services.InitServices();
+                    services.InitNavigation();
                 })
                 .Build();
         }
