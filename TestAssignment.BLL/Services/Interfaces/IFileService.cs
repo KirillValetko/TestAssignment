@@ -4,5 +4,7 @@
     {
         Task GenerateFilesAsync();
         Task<int> MergeFilesAsync(string sequence);
+        Task ExportFileAsync();
+        Task<(long, double)> GetSumAndMedianAsync();
     }
 }

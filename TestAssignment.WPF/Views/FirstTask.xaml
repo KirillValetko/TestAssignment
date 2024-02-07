@@ -41,7 +41,10 @@
                                                Style="{StaticResource Text_Style}"/>
                                 </Grid>
                             </Button>
-                            <Button Style="{StaticResource Btn}">
+                            <Button x:Name="ExportButton"
+                                    Style="{StaticResource Btn}"
+                                    Command="{Binding ExportFileCommand}"
+                                    Click="Button_Click">
                                 <Grid>
                                     <StackPanel VerticalAlignment="Center">
                                         <TextBlock Text="Export File"
@@ -51,7 +54,9 @@
                                     </StackPanel>
                                 </Grid>
                             </Button>
-                            <Button Style="{StaticResource Btn}">
+                            <Button x:Name="ExecuteSpButton"
+                                    Style="{StaticResource Btn}"
+                                    Command="{Binding ExecuteStoredProcedureCommand}">
                                 <Grid>
                                     <StackPanel VerticalAlignment="Center">
                                         <TextBlock Text="Execute Stored"
@@ -85,10 +90,12 @@
                                            Text="{Binding FilesMergeStatus}"/>
                             </Grid>
                             <Grid Height="60">
-                                <TextBlock Style="{StaticResource Text_Style}"/>
+                                <TextBlock Style="{StaticResource Text_Style}"
+                                           Text="{Binding FileExportStatus}"/>
                             </Grid>
                             <Grid Height="60">
-                                <TextBlock Style="{StaticResource Text_Style}"/>
+                                <TextBlock Style="{StaticResource Text_Style}"
+                                           Text="{Binding StoredProcedureExecutionStatus}"/>
                             </Grid>
                         </StackPanel>
                     </Grid>

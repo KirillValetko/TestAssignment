@@ -15,7 +15,15 @@ namespace TestAssignment.WPF.ViewModels
         private string _filesGenerationStatus;
 
         [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(ExportFileCommand))]
         private string _filesMergeStatus;
+
+        [ObservableProperty]
+        [NotifyCanExecuteChangedFor(nameof(ExecuteStoredProcedureCommand))]
+        private string _fileExportStatus;
+
+        [ObservableProperty]
+        private string _storedProcedureExecutionStatus;
 
         [ObservableProperty]
         private string _sequence;
@@ -49,7 +57,7 @@ namespace TestAssignment.WPF.ViewModels
         {
             var files = Directory.GetFiles(FileConstants.Filepath, FileConstants.FileSearchPattern);
 
-            return files.Length != 0;
+            return files.Length != 0 && !files.Any(f => f.Contains(FileConstants.UnitedFile));
         }
 
         [RelayCommand(CanExecute = nameof(CanMergeFiles))]
@@ -65,9 +73,42 @@ namespace TestAssignment.WPF.ViewModels
 
             FilesMergeStatus = $"Lines deleted: {linesDeleted}";
             await Task.Delay(2000);
-
+            
             FilesMergeStatus = string.Empty;
             Sequence = string.Empty;
+        }
+
+        private bool CanExportFile()
+        {
+            var files = Directory.GetFiles(FileConstants.Filepath, FileConstants.FileSearchPattern)
+                .FirstOrDefault(f => f.Contains(FileConstants.UnitedFile));
+
+            return files != null;
+        }
+
+        [RelayCommand(CanExecute = nameof(CanExportFile))]
+        private async Task ExportFile()
+        {
+            FileExportStatus = "Export Started";
+            await Task.Run(_fileService.ExportFileAsync);
+            FileExportStatus = "Export Ended";
+            await Task.Delay(1000);
+            FileExportStatus = string.Empty;
+        }
+
+        private bool CanExecuteStoredProcedure()
+        {
+            return CanExportFile();
+        }
+
+        [RelayCommand(CanExecute = nameof(CanExecuteStoredProcedure))]
+        private async Task ExecuteStoredProcedure()
+        {
+            var result = await Task.Run(async () =>
+                await _fileService.GetSumAndMedianAsync());
+            StoredProcedureExecutionStatus = $"Sum of integers: {result.Item1}\nMedian of doubles: {result.Item2}";
+            await Task.Delay(2000);
+            StoredProcedureExecutionStatus = string.Empty;
         }
     }
 }

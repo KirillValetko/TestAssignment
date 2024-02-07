@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Globalization;
+using System.Text;
 using TestAssignment.Common.Constants;
 using TestAssignment.Common.Generators.Interfaces;
 
@@ -41,7 +42,7 @@ namespace TestAssignment.Common.Generators
 
             row.Append(
                 (random.NextDouble() * FileRowConstants.DoubleUpperBound + FileRowConstants.DoubleLowerBound)
-                .ToString(FileRowConstants.DoubleFormat));
+                .ToString(FileRowConstants.DoubleFormat, CultureInfo.InvariantCulture));
 
             return row;
         }

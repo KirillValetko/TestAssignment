@@ -2,16 +2,20 @@
 using TestAssignment.BLL.Services.Interfaces;
 using TestAssignment.Common.Constants;
 using TestAssignment.Common.Generators.Interfaces;
+using TestAssignment.DAL.Repositories.Interfaces;
 
 namespace TestAssignment.BLL.Services
 {
     public class FileService : IFileService
     {
         private readonly IFileGenerator _fileGenerator;
+        private readonly IFileRepository _fileRepository;
 
-        public FileService(IFileGenerator fileGenerator)
+        public FileService(IFileGenerator fileGenerator,
+            IFileRepository fileRepository)
         {
             _fileGenerator = fileGenerator;
+            _fileRepository = fileRepository;
         }
 
         public async Task GenerateFilesAsync()
@@ -42,7 +46,7 @@ namespace TestAssignment.BLL.Services
                 {
                     foreach (var file in files)
                     {
-                        var linesDeleted = await RewriteFile(file, sequence);
+                        var linesDeleted = await RewriteFileAsync(file, sequence);
                         totalLinesDeleted += linesDeleted;
                     }
                 }
@@ -74,7 +78,23 @@ namespace TestAssignment.BLL.Services
             }
         }
 
-        private async Task<int> RewriteFile(string filepath, string sequence)
+        public async Task ExportFileAsync()
+        {
+            var file = Directory
+                .GetFiles(FileConstants.Filepath, FileConstants.FileSearchPattern)
+                .FirstOrDefault(f => f.Contains(FileConstants.UnitedFile));
+
+            await _fileRepository.FileBulkInsertAsync(file);
+        }
+
+        public async Task<(long, double)> GetSumAndMedianAsync()
+        {
+            var result = await _fileRepository.GetSumAndMedianAsync();
+
+            return result;
+        }
+
+        private async Task<int> RewriteFileAsync(string filepath, string sequence)
         {
             var tempFile = Path.GetTempFileName();
 
