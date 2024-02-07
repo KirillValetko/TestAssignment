@@ -32,6 +32,7 @@ namespace TestAssignment.WPF
                     services.InitRepositories();
                     services.InitServices();
                     services.InitNavigation();
+                    services.InitMapper();
                 })
                 .Build();
         }
